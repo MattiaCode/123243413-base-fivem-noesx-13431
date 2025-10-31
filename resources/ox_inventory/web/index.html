@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="inventoryContainer" style="display: none;">
+        <div class="inventory">
+            <div class="inventory-header">
+                <h2>Inventario</h2>
+                <div class="weight-bar">
+                    <div class="weight-progress" id="weightProgress"></div>
+                    <span id="weightText">0 / 100000 kg</span>
+                </div>
+                <button class="close-btn" onclick="closeInventory()">X</button>
+            </div>
+            <div class="inventory-grid" id="inventoryGrid"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
