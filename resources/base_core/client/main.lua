@@ -21,7 +21,7 @@ AddEventHandler('base:initialSpawn', function()
 end)
 
 function SpawnPlayer()
-    local model = GetHashKey(Config.DefaultModel)
+    local model = GetHashKey('mp_m_freemode_01')
 
     RequestModel(model)
     while not HasModelLoaded(model) do
@@ -46,13 +46,27 @@ function SpawnPlayer()
     ClearPedTasksImmediately(ped)
     RemoveAllPedWeapons(ped, true)
     ClearPlayerWantedLevel(PlayerId())
+
+    TriggerServerEvent('base:giveStartingItems')
 end
 
-function IsPlayerInSafeZone()
+function IsPlayerInAnySafeZone()
     local playerCoords = GetEntityCoords(PlayerPedId())
-    local distance = #(playerCoords - Config.SafeZone.coords)
-    return distance <= Config.SafeZone.radius
+
+    local distanceMain = #(playerCoords - Config.MainSafeZone.coords)
+    if distanceMain <= Config.MainSafeZone.radius then
+        return true
+    end
+
+    for _, zone in pairs(Config.TeleportLocations) do
+        local distance = #(playerCoords - zone.coords)
+        if distance <= zone.radius then
+            return true
+        end
+    end
+
+    return false
 end
 
-exports('IsPlayerInSafeZone', IsPlayerInSafeZone)
+exports('IsPlayerInAnySafeZone', IsPlayerInAnySafeZone)
 exports('SpawnPlayer', SpawnPlayer)

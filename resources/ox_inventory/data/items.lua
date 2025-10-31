@@ -33,5 +33,19 @@ Items = {
         stack = true,
         close = true,
         description = 'Una benda medica'
+    },
+    ['pistol_mk2'] = {
+        label = 'Pistola MK2',
+        weight = 800,
+        stack = false,
+        close = true,
+        description = 'Una pistola MK2'
+    },
+    ['backpack'] = {
+        label = 'Zaino',
+        weight = 500,
+        stack = false,
+        close = true,
+        description = 'Uno zaino'
     }
 }

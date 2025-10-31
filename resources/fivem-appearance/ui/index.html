@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appearance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: transparent;
+        }
+
+        #container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            right: 50px;
+            transform: translateY(-50%);
+            width: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h2 {
+            color: white;
+            font-size: 24px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .content {
+            padding: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+            color: white;
+        }
+
+        .info {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .info p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .save-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .save-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="header">
+            <h2>Personalizzazione</h2>
+            <button class="close-btn" onclick="close()">X</button>
+        </div>
+        <div class="content">
+            <div class="info">
+                <p>Usa il menu di personalizzazione di GTA V nativo premendo <strong>M</strong></p>
+                <p>Una volta finito, clicca su Salva per salvare l'aspetto</p>
+                <button class="save-btn" onclick="save()">Salva Aspetto</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+
+            if (data.action === 'open') {
+                document.getElementById('container').style.display = 'block';
+            } else if (data.action === 'close') {
+                document.getElementById('container').style.display = 'none';
+            }
+        });
+
+        function close() {
+            fetch(`https://${GetParentResourceName()}/close`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+        }
+
+        function save() {
+            fetch(`https://${GetParentResourceName()}/saveAppearance`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                close();
+            }
+        });
+
+        function GetParentResourceName() {
+            return window.location.hostname;
+        }
+    </script>
+</body>
+</html>

@@ -3,22 +3,23 @@ game 'gta5'
 lua54 'yes'
 
 author 'Custom Server'
-description 'Base Core System'
+description 'FiveM Appearance - No Framework'
 version '1.0.0'
 
 shared_scripts {
-    '@ox_lib/init.lua',
     'config.lua'
 }
 
 client_scripts {
-    'client/main.lua',
-    'client/spawn.lua',
-    'client/safezone.lua',
-    'client/teleport.lua',
-    'client/vehicles.lua'
+    'client/main.lua'
 }
 
 server_scripts {
     'server/main.lua'
+}
+
+ui_page 'ui/index.html'
+
+files {
+    'ui/index.html'
 }
