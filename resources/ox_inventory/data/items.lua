@@ -41,6 +41,20 @@ Items = {
         close = true,
         description = 'Una pistola MK2'
     },
+    ['smg'] = {
+        label = 'SMG',
+        weight = 1200,
+        stack = false,
+        close = true,
+        description = 'Un fucile mitragliatore'
+    },
+    ['rifle'] = {
+        label = 'Fucile',
+        weight = 1500,
+        stack = false,
+        close = true,
+        description = 'Un fucile d\'assalto'
+    },
     ['backpack'] = {
         label = 'Zaino',
         weight = 500,

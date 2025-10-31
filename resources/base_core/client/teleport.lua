@@ -59,12 +59,38 @@ function OpenTeleportMenu()
     local options = {}
 
     for i, location in pairs(Config.TeleportLocations) do
+        local iconColor = location.color == 'green' and '🟢' or '🔴'
+
         table.insert(options, {
-            title = location.label,
-            description = 'Teletrasportati a ' .. location.label,
-            icon = 'location-dot',
+            title = iconColor .. ' ' .. location.label,
+            description = 'Teletrasportati a ' .. location.label .. (location.type == 'safe' and ' (Zona Sicura)' or ' (Zona PVP)'),
+            icon = location.type == 'safe' and 'shield' or 'skull',
             onSelect = function()
                 TeleportToLocation(location.coords)
+            end
+        })
+    end
+
+    for i, redZone in pairs(Config.RedZones) do
+        local avgX, avgY = 0, 0
+        local numPoints = #redZone.points
+
+        for _, point in ipairs(redZone.points) do
+            avgX = avgX + point.x
+            avgY = avgY + point.y
+        end
+
+        avgX = avgX / numPoints
+        avgY = avgY / numPoints
+
+        local centerCoords = vector3(avgX, avgY, redZone.minZ + 1.0)
+
+        table.insert(options, {
+            title = '🔴 ' .. redZone.label,
+            description = 'Teletrasportati a ' .. redZone.label .. ' (Zona PVP - Drop Loot)',
+            icon = 'skull-crossbones',
+            onSelect = function()
+                TeleportToLocation(centerCoords)
             end
         })
     end

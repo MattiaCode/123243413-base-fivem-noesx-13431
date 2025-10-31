@@ -16,9 +16,17 @@ client_scripts {
     'client/spawn.lua',
     'client/safezone.lua',
     'client/teleport.lua',
-    'client/vehicles.lua'
+    'client/vehicles.lua',
+    'client/weapons.lua',
+    'client/redzones.lua',
+    'client/deathbag.lua',
+    'client/shop.lua',
+    'client/storage.lua',
+    'client/radio.lua'
 }
 
 server_scripts {
-    'server/main.lua'
+    'server/main.lua',
+    'server/deathbag.lua',
+    'server/shop.lua'
 }

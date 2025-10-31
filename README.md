@@ -11,14 +11,18 @@ Server FiveM completamente custom senza dipendenze ESX.
 
 ### Item Iniziali
 Ogni giocatore riceve automaticamente:
-- 1x Pistola MK2 (con 50 munizioni)
+- 1x Pistola MK2 (con munizioni infinite)
 - 10x Bende
 - 1x Zaino
 - 50.000$ in contanti
 
+### Munizioni Infinite
+- Tutte le armi hanno munizioni infinite
+- Non è necessario ricaricare o cercare munizioni
+
 ### Safe Zones
-- **Safe Zone Principale**: Spawn point con marker verde visibile
-- **Safe Zones Teletrasporto**: Ogni destinazione di teletrasporto ha una mini safe zone
+- **Safe Zone Principale**: Spawn point con marker verde visibile (30m raggio)
+- **Safe Zones Teletrasporto**: Ogni destinazione safe ha una mini safe zone (25m raggio)
 
 Nelle safe zones:
 - Invincibilità completa
@@ -26,10 +30,26 @@ Nelle safe zones:
 - Impossibile investire altri giocatori
 - Possibilità di spawnare veicoli
 
+### Zone Rosse (PVP)
+- Zone PVP con polyzone
+- Marker rosso visibile per identificare le zone
+- Sistema di drop loot alla morte:
+  - Il cadavere non è visibile
+  - Appare un borsone con il loot del giocatore
+  - Altri giocatori possono perquisire il borsone premendo E
+  - Non si può rubare lo zaino e il suo contenuto
+  - Solo gli item fuori dallo zaino sono rubabili
+  - Il borsone scompare dopo 5 minuti
+
+Destinazioni nel menu teletrasporto:
+- 🟢 Zone Sicure: 707, 593, Grove Street, Sandy Shores, Paleto Bay
+- 🔴 Zone PVP: Zona PVP Nord, Zona PVP Sud, Arena di Combattimento
+
 ### Sistema di Teletrasporto
 - Ped interattivo allo spawn point
 - Menu ox_lib per scegliere la destinazione
-- Destinazioni disponibili: 707, 593, Grove Street, Sandy Shores, Paleto Bay
+- Zone sicure e zone rosse disponibili
+- Icone colorate per identificare il tipo di zona
 
 ### Personalizzazione Aspetto
 - Sistema fivem-appearance integrato
@@ -41,10 +61,40 @@ Nelle safe zones:
 - `/macchina` - Spawna una Adder (solo nelle safe zones)
 - `F` - Elimina il veicolo spawnato (quando sei dentro)
 
+### Shop System
+- Ped shop allo spawn point
+- Acquista armi, cibo, e altri oggetti
+- Sistema di pagamento con denaro contante
+
+Item disponibili:
+- Pistola MK2: $5.000
+- SMG: $8.000
+- Fucile: $12.000
+- Benda: $100
+- Acqua: $50
+- Pane: $50
+- Telefono: $500
+- Zaino: $1.000
+
+### Storage System
+- Ped storage allo spawn point
+- Visualizza il tuo inventario
+- Gestisci i tuoi oggetti
+
+### Sistema Radio
+- `/radiof [frequenza]` - Entra in una frequenza radio
+- `/radiooff` - Esci dalla frequenza radio
+- `/radioanim` - Cambia animazione radio
+
+Animazioni disponibili:
+1. Animazione Spalla
+2. Animazione Petto
+3. Animazione Orecchio
+
 ### Inventario
 - ox_inventory custom senza dipendenze ESX
 - `F2` o `/inventory` o `/inv` - Apri inventario
-- `/giveitem [item] [quantità]` - Aggiungi item
+- `/giveitem [item] [quantità]` - Aggiungi item (admin)
 
 ### Respawn Timer
 - Se muori fuori dalla safe zone: respawn automatico dopo 20 secondi
@@ -55,6 +105,7 @@ Nelle safe zones:
 1. Scarica le dipendenze richieste:
    - oxmysql
    - ox_lib
+   - pma-voice
    - Risorse base FiveM (mapmanager, chat, spawnmanager, sessionmanager, basic-gamemode, hardcap, rconlog)
 
 2. Configura il database MySQL nel `server.cfg`:
@@ -74,20 +125,26 @@ Nelle safe zones:
 
 Modifica `resources/base_core/config.lua` per personalizzare:
 - Punto di spawn
-- Posizioni di teletrasporto
+- Posizioni di teletrasporto (safe zones)
+- Zone rosse (PVP zones) con polyzone
 - Dimensioni safe zones
 - Item iniziali
 - Timer di respawn
+- Item nel shop e prezzi
+- Animazioni radio
 
 ## Comandi
 
 | Comando | Descrizione |
 |---------|-------------|
-| `/appearance` | Apri menu personalizzazione aspetto |
-| `/moto` | Spawna BF400 |
-| `/macchina` | Spawna Adder |
-| `/inventory` o `/inv` | Apri inventario |
-| `/giveitem [item] [quantità]` | Aggiungi item |
+| `/appearance` | Apri menu personalizzazione aspetto (solo safe zones) |
+| `/moto` | Spawna BF400 (solo safe zones) |
+| `/macchina` | Spawna Adder (solo safe zones) |
+| `/inventory` o `/inv` o `F2` | Apri inventario |
+| `/giveitem [item] [quantità]` | Aggiungi item (admin) |
+| `/radiof [frequenza]` | Entra in frequenza radio |
+| `/radiooff` | Esci dalla radio |
+| `/radioanim` | Cambia animazione radio |
 
 ## Struttura Risorse
 
@@ -100,13 +157,37 @@ resources/
 │   │   ├── spawn.lua      # Sistema respawn
 │   │   ├── safezone.lua   # Gestione safe zones
 │   │   ├── teleport.lua   # Sistema teletrasporto con ped
-│   │   └── vehicles.lua   # Sistema veicoli
+│   │   ├── vehicles.lua   # Sistema veicoli
+│   │   ├── weapons.lua    # Munizioni infinite
+│   │   ├── redzones.lua   # Zone rosse PVP con polyzone
+│   │   ├── deathbag.lua   # Sistema borsone drop loot
+│   │   ├── shop.lua       # Sistema shop
+│   │   ├── storage.lua    # Sistema storage
+│   │   └── radio.lua      # Sistema radio
 │   ├── server/
-│   │   └── main.lua       # Gestione server e item iniziali
+│   │   ├── main.lua       # Gestione server e item iniziali
+│   │   ├── deathbag.lua   # Gestione server borsoni
+│   │   └── shop.lua       # Gestione acquisti
 │   └── config.lua         # Configurazione generale
 ├── fivem-appearance/      # Sistema personalizzazione
 └── ox_inventory/          # Inventario custom
 ```
+
+## Interazioni
+
+### Allo Spawn
+- **Ped Teletrasporto**: Premi E per aprire menu destinazioni
+- **Ped Shop**: Premi E per aprire il negozio
+- **Ped Storage**: Premi E per visualizzare inventario
+
+### Zone Rosse
+- Entrata: Notifica "Sei entrato in una zona PVP!"
+- Marker rosso visibile
+- Drop loot alla morte
+- Perquisizione borsone con E
+
+### In Veicolo
+- Premi F per eliminare il veicolo spawnato
 
 ## Note
 
@@ -114,3 +195,6 @@ resources/
 - Tutte le funzionalità sono custom-made
 - Configurabile tramite file config
 - Sistema modulare e facilmente estendibile
+- Zone PVP con polyzone per definire aree complesse
+- Sistema radio integrato con pma-voice
+- Drop loot realistico con protezione zaino
