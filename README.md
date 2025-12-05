@@ -88,6 +88,27 @@ Item disponibili:
 - Visualizza il tuo inventario
 - Gestisci i tuoi oggetti
 
+### Sistema Ferro e Trader
+- **Miniera di Ferro al 707**: Blip visibile sulla mappa
+- Premi E per raccogliere ferro (1-3 unità ogni raccolta)
+- Tempo raccolta: 5 secondi con animazione
+- Cooldown: 10 secondi tra una raccolta e l'altra
+
+**Ped Trader allo Spawn**:
+- Scambia ferro con oggetti e denaro
+- Menu ox_lib per visualizzare scambi disponibili
+- Mostra quantità di ferro disponibile
+
+Item scambiabili con ferro:
+- Pistola MK2: 50 Ferro
+- SMG: 80 Ferro
+- Fucile: 120 Ferro
+- Bende (x10): 5 Ferro
+- Acqua (x5): 2 Ferro
+- Pane (x5): 2 Ferro
+- Telefono: 10 Ferro
+- Denaro (10K): 20 Ferro
+
 ### Sistema Radio
 - `/radiof [frequenza]` - Entra in una frequenza radio
 - `/radiooff` - Esci dalla frequenza radio
@@ -184,8 +205,9 @@ resources/
 
 ### Allo Spawn
 - **Ped Teletrasporto**: Premi E per aprire menu destinazioni
-- **Ped Shop**: Premi E per aprire il negozio
+- **Ped Shop**: Premi E per aprire il negozio (denaro)
 - **Ped Storage**: Premi E per visualizzare inventario
+- **Ped Trader**: Premi E per scambiare ferro
 
 ### Zone Rosse
 - Entrata: Notifica "Sei entrato in una zona PVP!"
@@ -195,6 +217,12 @@ resources/
 
 ### In Veicolo
 - Premi F per eliminare il veicolo spawnato
+
+### Alla Miniera (707)
+- Blip visibile sulla mappa
+- Premi E per raccogliere ferro
+- Animazione di raccolta (martellamento)
+- Attendi cooldown tra raccolte
 
 ## Note
 

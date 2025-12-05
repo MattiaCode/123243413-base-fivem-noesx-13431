@@ -23,11 +23,15 @@ client_scripts {
     'client/deathbag.lua',
     'client/shop.lua',
     'client/storage.lua',
-    'client/radio.lua'
+    'client/radio.lua',
+    'client/iron.lua',
+    'client/trader.lua'
 }
 
 server_scripts {
     'server/main.lua',
     'server/deathbag.lua',
-    'server/shop.lua'
+    'server/shop.lua',
+    'server/iron.lua',
+    'server/trader.lua'
 }

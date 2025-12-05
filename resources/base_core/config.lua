@@ -29,6 +29,21 @@ Config.StoragePed = {
     coords = vector4(-1030.0, -2735.0, 20.17, 90.0)
 }
 
+Config.TraderPed = {
+    model = 's_m_m_scientist_01',
+    coords = vector4(-1037.0, -2740.0, 20.17, 0.0)
+}
+
+Config.IronMine = {
+    coords = vector3(710.0, -1000.0, 24.0),
+    blipSprite = 478,
+    blipColor = 5,
+    blipScale = 0.8,
+    collectTime = 5000,
+    collectAmount = {min = 1, max = 3},
+    cooldown = 10000
+}
+
 Config.TeleportLocations = {
     {
         label = '707',
@@ -127,4 +142,15 @@ Config.RadioAnimations = {
     {label = 'Animazione 1 - Spalla', dict = 'random@arrests', anim = 'generic_radio_chatter'},
     {label = 'Animazione 2 - Petto', dict = 'cellphone@', anim = 'cellphone_call_listen_base'},
     {label = 'Animazione 3 - Orecchio', dict = 'anim@amb@casino@hangout@oc_strip@oc_str_05@', anim = 'wank_loop_a_stripper_a'},
+}
+
+Config.TraderItems = {
+    {name = 'pistol_mk2', label = 'Pistola MK2', ironCost = 50},
+    {name = 'smg', label = 'SMG', ironCost = 80},
+    {name = 'rifle', label = 'Fucile', ironCost = 120},
+    {name = 'bandage', label = 'Benda (x10)', ironCost = 5, count = 10},
+    {name = 'water', label = 'Acqua (x5)', ironCost = 2, count = 5},
+    {name = 'bread', label = 'Pane (x5)', ironCost = 2, count = 5},
+    {name = 'phone', label = 'Telefono', ironCost = 10},
+    {name = 'money', label = 'Denaro (10K)', ironCost = 20, count = 10000}
 }

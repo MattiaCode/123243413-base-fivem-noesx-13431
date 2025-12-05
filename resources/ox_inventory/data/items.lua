@@ -61,5 +61,12 @@ Items = {
         stack = false,
         close = true,
         description = 'Uno zaino'
+    },
+    ['iron'] = {
+        label = 'Ferro',
+        weight = 50,
+        stack = true,
+        close = true,
+        description = 'Ferro grezzo raccolto dalla miniera'
     }
 }
