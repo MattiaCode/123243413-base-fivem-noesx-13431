@@ -18,6 +18,7 @@ client_scripts {
     'client/teleport.lua',
     'client/vehicles.lua',
     'client/weapons.lua',
+    'client/health.lua',
     'client/redzones.lua',
     'client/deathbag.lua',
     'client/shop.lua',

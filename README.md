@@ -16,9 +16,16 @@ Ogni giocatore riceve automaticamente:
 - 1x Zaino
 - 50.000$ in contanti
 
-### Munizioni Infinite
-- Tutte le armi hanno munizioni infinite
+### Sistema Armi
+- **Munizioni Infinite**: Tutte le armi hanno munizioni infinite
+- **Nessun Rinculo**: Tutte le armi non hanno rinculo
 - Non è necessario ricaricare o cercare munizioni
+- Esperienza di tiro ottimizzata per PVP
+
+### Sistema Salute
+- **Nessuna Fame/Sete**: Non è necessario mangiare o bere
+- Armatura rigenerata automaticamente al 100%
+- Focus sul combattimento senza bisogni fisiologici
 
 ### Safe Zones
 - **Safe Zone Principale**: Spawn point con marker verde visibile (30m raggio)
